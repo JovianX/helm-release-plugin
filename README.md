@@ -1,2 +1,43 @@
-# helm-release-plugin
-A helm3 plugin that can re-create helm Charts from releases and update values of deployed released without the chart
+# `helm-release` Plugin
+`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of elm charts). 
+
+`helm-release` plugin allows:
+
+ * Pull (re-create) Helm charts from a deployed helm release.
+ * Update values of deployed releases, without spesificing the Helm chart.
+
+## Getting started
+### Installation
+To install the plugin:
+```shell
+$ helm plugin install  https://github.com/JovianX/helm-release-plugin
+```
+Update to latest:
+```shell
+$ helm plugin update release
+```
+Verify it's been installed:
+```shell
+$ helm plugin list
+```
+
+### Usage
+```
+$ helm release
+usage: ./release.sh [ pull ]
+Available Commands:
+    pull   Pulls (re-create) a Helm chart from a deployed Helm release
+
+$ helm release pull 
+usage: helm release pull <RELEASE NAME>
+
+Example:
+$ helm --namespace nginx release pull nginx
+
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+This Project is unser the Apache 2.0 lisence agreement, see [LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE) file for more details.
