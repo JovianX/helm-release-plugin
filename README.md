@@ -1,5 +1,5 @@
 # `helm-release` Plugin
-`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of elm charts). 
+`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of Helm charts). 
 
 `helm-release` plugin allows:
 
