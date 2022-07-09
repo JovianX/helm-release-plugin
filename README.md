@@ -55,7 +55,7 @@ $ helm --namespace nginx release pull nginx
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Contributors
-<a href="https://github.com/tooljet/JovianX/helm-release-plugin/contributors">
+<a href="https://github.com/JovianX/helm-release-plugin/contributors">
   <img src="https://contrib.rocks/image?repo=JovianX/helm-release-plugin" />
 </a>
 
