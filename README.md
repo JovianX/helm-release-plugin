@@ -1,4 +1,4 @@
-# `helm-release` Plugin
+# Helm3 Plugin `helm-release`
 `helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of Helm charts). 
 
 `helm-release` plugin allows:
@@ -20,6 +20,16 @@ Verify it's been installed:
 ```shell
 $ helm plugin list
 ```
+
+>
+>
+> Dependencies: `helm-release` plugin depends on:  
+>>      jq - a lightweight and flexible command-line JSON processor.   
+>>             Install: https://stedolan.github.io/jq/download/  
+> 
+>>      yq - a lightweight and portable command-line YAML processor.   
+>>            Install: https://github.com/mikefarah/yq/#install
+>
 
 ### Usage
 ```
