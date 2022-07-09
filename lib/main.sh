@@ -7,13 +7,14 @@ source $(dirname -- "$0")/lib/api/helm-ops.sh
 function main() {
 
 	init_dir './data'
+	test_deps
 
 	declare -A -x command_table=(
 		['pull']="pull_chart_from_release"
 	)
 
 	local commands="${!command_table[@]}"
-	local msg="usage: ./release.sh [ $commands ]"
+	local msg="usage: ./release.sh [$commands]"
 	if [[ $# < 1 ]]; then exit_with_help "$msg"; fi
 
 	local command=${1}; shift

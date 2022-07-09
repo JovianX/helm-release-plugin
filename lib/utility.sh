@@ -8,6 +8,20 @@ function init_dir() { [[ -d $_ROOT'/'$1 ]] || mkdir $_ROOT'/'$1; }
 
 function rm_dir() { [[ -d $_ROOT'/'$1 ]] || rm -rf $_ROOT'/'$1; }
 
+function test_deps() {
+	if ! command -v jq &> /dev/null
+	then
+		echo "jq could not be found - please install command `jq` (https://stedolan.github.io/jq/download/)"
+		exit
+	fi
+	if ! command -v yq &> /dev/null
+	then
+		echo "yq could not be found - please install command `yq` (https://github.com/mikefarah/yq/#install)"
+		exit
+	fi
+
+}
+
 function str_split() {
 
 	declare -a -x -g str_split_result=()

@@ -12,6 +12,16 @@ To install the plugin:
 ```shell
 $ helm plugin install  https://github.com/JovianX/helm-release-plugin
 ```
+
+>
+> Dependencies: `helm-release` plugin depends on:  
+>>      jq - a lightweight and flexible command-line JSON processor.   
+>>             Install: https://stedolan.github.io/jq/download/  
+> 
+>>      yq - a lightweight and portable command-line YAML processor.   
+>>            Install: https://github.com/mikefarah/yq/#install
+>
+
 Update to latest:
 ```shell
 $ helm plugin update release
@@ -21,15 +31,6 @@ Verify it's been installed:
 $ helm plugin list
 ```
 
->
->
-> Dependencies: `helm-release` plugin depends on:  
->>      jq - a lightweight and flexible command-line JSON processor.   
->>             Install: https://stedolan.github.io/jq/download/  
-> 
->>      yq - a lightweight and portable command-line YAML processor.   
->>            Install: https://github.com/mikefarah/yq/#install
->
 
 ### Usage
 ```
