@@ -50,4 +50,4 @@ $ helm --namespace nginx release pull nginx
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-This Project is unser the Apache 2.0 lisence agreement, see [LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE) file for more details.
+This Project is licensed under the Apache 2.0 license agreement, see [LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE) file for complete license agreement.
