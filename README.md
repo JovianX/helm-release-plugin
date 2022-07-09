@@ -1,14 +1,16 @@
 # Helm3 Plugin `helm-release`
-`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of Helm charts). 
+`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployment instances of Helm charts).   
+[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)
+![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
+[![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
+
+
 
 Features:
 
  * Pull (re-create) Helm charts from a deployed helm release.
  * Update values of a deployed release (without the chart package or path).
 
-[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)
-![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
-[![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
 
 ## Getting started
 ### Installation
