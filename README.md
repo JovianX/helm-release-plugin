@@ -6,9 +6,9 @@
  * Pull (re-create) Helm charts from a deployed helm release.
  * Update values of deployed releases, without spesificing the Helm chart.
 
-[![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
-![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
 [![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)
+![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
+[![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
 
 ## Getting started
 ### Installation
