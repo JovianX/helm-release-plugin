@@ -8,7 +8,7 @@
 
 Features:
 
- * Pull (re-create) Helm charts from a deployed helm release.
+ * Pull (re-create) Helm charts from a deployed helm release. The helm chart is re-created from the release data stored in `helm.sh/release.v1` secret. 
  * Update values of a deployed release (without the chart package or path).
 
 
