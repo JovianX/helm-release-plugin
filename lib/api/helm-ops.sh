@@ -75,8 +75,8 @@ function pull_chart_from_release() {
 
 		mkdir -p $CHART_DIR
 
-		echo $RELEASE_CONTENT | jq -r '.chart.metadata' | yq e -P - > $CHART_DIR/Chart.yaml
-		echo $RELEASE_CONTENT | jq -r '.chart.values' | yq e -P - > $CHART_DIR/values.yaml
+		echo $RELEASE_CONTENT | jq -r '.chart.metadata' | $HELM_PLUGIN_DIR/lib/yq e -P - > $CHART_DIR/Chart.yaml
+		echo $RELEASE_CONTENT | jq -r '.chart.values' | $HELM_PLUGIN_DIR/lib/yq e -P - > $CHART_DIR/values.yaml
 
 		# Create Chart Templates
 		for row in $(echo $RELEASE_CONTENT | jq -r '.chart.templates[] | @base64'); do

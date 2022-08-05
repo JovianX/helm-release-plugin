@@ -14,12 +14,6 @@ function test_deps() {
 		echo "jq could not be found - please install command `jq` (https://stedolan.github.io/jq/download/)"
 		exit
 	fi
-	if ! command -v yq &> /dev/null
-	then
-		echo "yq could not be found - please install command `yq` (https://github.com/mikefarah/yq/#install)"
-		exit
-	fi
-
 }
 
 function str_split() {
