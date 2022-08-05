@@ -45,15 +45,15 @@ release	0.1.0  	Update values of a releases, pull charts from releases
 ### Usage
 ```
 $ helm release
-usage: ./release.sh [ pull ]
+usage: helm release [ pull ]
 Available Commands:
     pull   Pulls (re-create) a Helm chart from a deployed Helm release
 
 $ helm release pull
-usage: helm release pull <RELEASE NAME>
+usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECTORY>] [-o | --output [yaml | json | text]]
 
 Example:
-$ helm --namespace nginx release pull nginx
+$ helm --namespace nginx release pull nginx --destination /home/me/helm-charts 
 
 ```
 
