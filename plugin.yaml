@@ -13,8 +13,12 @@
 #  limitations under the License.
 
 Name: "release"
-version: "0.2.0"
+version: "0.3.0"
 usage: "pull or update Helm Releases"
 description: |-
     Update values of a releases, pull charts from releases
 command: "$HELM_PLUGIN_DIR/release.sh"
+hooks:
+ install: |
+  wget https://github.com/mikefarah/yq/releases/download/v4.25.3/yq_linux_amd64  -O $HELM_PLUGIN_DIR/lib/yq;
+  chmod +x $HELM_PLUGIN_DIR/lib/yq;
