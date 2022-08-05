@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 function pull_chart_from_release() {
 
-	local msg="usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECTORY> Default(./)] [-o | --output [yaml | json | text]]"
+	local msg="usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECTORY>] [-o | --output [yaml | json | text]]"
 	NAMESPACE=$HELM_NAMESPACE
 	K8S_CONTEXT=$HELM_KUBECONTEXT
 	DESTINATION_DIR="."

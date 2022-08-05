@@ -14,7 +14,7 @@ function main() {
 	)
 
 	local commands="${!command_table[@]}"
-	local msg="usage: ./release.sh [$commands]"
+	local msg="usage: helm release [$commands]"
 	if [[ $# < 1 ]]; then exit_with_help "$msg"; fi
 
 	local command=${1}; shift
