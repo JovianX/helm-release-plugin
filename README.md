@@ -58,8 +58,8 @@ $ helm --namespace nginx release pull nginx --destination /home/me/helm-charts
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Contributors
-<a href="https://github.com/JovianX/helm-release-plugin/contributors">
-  <img src="https://contrib.rocks/image?repo=JovianX/helm-release-plugin" />
+<a href = "https://github.com/JovianX/helm-release-plugin/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=JovianX/helm-release-plugin"/>
 </a>
 
 ## License
