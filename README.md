@@ -3,12 +3,12 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
 [![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers) Add a star ⭐ if you like the project.
 
-`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployed Helm charts).   
+`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployed Helm charts).
 
 
 Features:
 
- * Pull (re-create) Helm charts from a deployed helm release. The helm chart is re-created from the release data stored in `helm.sh/release.v1` secret. 
+ * Pull (re-create) Helm charts from a deployed helm release. The helm chart is re-created from the release data stored in `helm.sh/release.v1` secret.
  * Update values of a deployed release (without the chart package or path).
 
 
@@ -20,11 +20,11 @@ $ helm plugin install  https://github.com/JovianX/helm-release-plugin
 ```
 
 >
-> Dependencies: `helm-release` plugin depends on:  
->>      jq - a lightweight and flexible command-line JSON processor.   
->>             Install: https://stedolan.github.io/jq/download/  
-> 
->>      yq - a lightweight and portable command-line YAML processor.   
+> Dependencies: `helm-release` plugin depends on:
+>>      jq - a lightweight and flexible command-line JSON processor.
+>>             Install: https://stedolan.github.io/jq/download/
+>
+>>      yq - a lightweight and portable command-line YAML processor.
 >>            Install: https://github.com/mikefarah/yq/#install
 >
 
@@ -35,9 +35,9 @@ $ helm plugin update release
 Verify it's been installed:
 ```shell
 $ helm plugin list
-NAME   	VERSION	DESCRIPTION                                                                      
+NAME   	VERSION	DESCRIPTION
 ...
-release	0.1.0  	Update values of a releases, pull charts from releases                           
+release	0.1.0  	Update values of a releases, pull charts from releases
 ...
 ```
 
@@ -49,7 +49,7 @@ usage: ./release.sh [ pull ]
 Available Commands:
     pull   Pulls (re-create) a Helm chart from a deployed Helm release
 
-$ helm release pull 
+$ helm release pull
 usage: helm release pull <RELEASE NAME>
 
 Example:
