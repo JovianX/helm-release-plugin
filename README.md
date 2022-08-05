@@ -24,9 +24,6 @@ $ helm plugin install  https://github.com/JovianX/helm-release-plugin
 >>      jq - a lightweight and flexible command-line JSON processor.
 >>             Install: https://stedolan.github.io/jq/download/
 >
->>      yq - a lightweight and portable command-line YAML processor.
->>            Install: https://github.com/mikefarah/yq/#install
->
 
 Update to latest:
 ```shell
