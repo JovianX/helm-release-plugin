@@ -51,6 +51,7 @@ usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECT
 
 Example:
 $ helm --namespace nginx release pull nginx --destination /home/me/helm-charts 
+$ Chart saved to nginx-ingress-0.13.2
 
 ```
 
