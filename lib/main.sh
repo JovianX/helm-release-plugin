@@ -21,10 +21,10 @@ function main() {
 	local fn_name=${command_table[$command]}
 
 	if [[ $fn_name == '' ]]; then exit_with_help "$msg"; fi
-	if $fn_name $@; then 
+	if $fn_name $@; then
 		rm -Rf $(dirname -- "$0")/data;
-		return 0; 
-	else 
-		return 1; 
+		return 0;
+	else
+		return 1;
 	fi
 }
