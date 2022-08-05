@@ -14,6 +14,9 @@ Features:
  * Pull (re-create) Helm charts from a deployed helm release.
  * Update values of a deployed release (without the chart package or path).
 
+Common use-Cases:
+ * Redeploy a release on another cluster or namespace with the exact same helm chart. 
+ * Update values of a release without the original helm chart, when you are not sure what exact version was used, or you have no access to the original helm chart (helm upgrade command requires the chart `helm upgrade [RELEASE] [CHART] [flags]`).
 
 ## Getting started
 ### Installation
