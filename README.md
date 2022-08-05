@@ -22,7 +22,7 @@ Common use-Cases:
 ### Installation
 To install the plugin:
 ```shell
-$ helm plugin install  https://github.com/JovianX/helm-release-plugin
+helm plugin install https://github.com/JovianX/helm-release-plugin
 ```
 
 >
