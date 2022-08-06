@@ -33,11 +33,11 @@ helm plugin install https://github.com/JovianX/helm-release-plugin
 
 Update to latest:
 ```shell
-helm plugin update release
+$ helm plugin update release
 ```
 Verify it's been installed:
 ```shell
-helm plugin list
+$ helm plugin list
 NAME   	VERSION	DESCRIPTION
 ...
 release	0.3.0  	Update values of a releases, pull charts from releases
