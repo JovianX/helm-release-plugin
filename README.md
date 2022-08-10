@@ -74,8 +74,10 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 </a>
 
 ## License
-Copyright 2022 JovianX Ltd.  
-Licensed under the Apache 2.0 license agreement, see [LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE) file for complete license agreement.
+ Copyright 2022 JovianX Ltd.
+
+ Licensed under the Apache License, Version 2.0 (the "[LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE)")
+
 
 <img src=https://jovianx.com/wp-content/uploads/2021/05/Logo2-2.png  height="50">
 
