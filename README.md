@@ -66,13 +66,13 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 ```
 
 ## Contributing
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+We love your input! Please see the [CONTRIBUTING](CONTRIBUTING.md) guide, we want to make contributing to this project as easy and transparent as possible, whether it's:
 - Reporting a bug
 - Submitting a fix
 - Proposing new features
 - All pull requests are welcome.
 
-Please see the [CONTRIBUTING](CONTRIBUTING.md) guide. 
+
 
 ## Contributors
 <a href = "https://github.com/JovianX/helm-release-plugin/graphs/contributors">
