@@ -2,7 +2,7 @@
 ![Panda](/panda.jpg)
 
 # Helm3 Plugin `helm-release`
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/search?repo=helm-release)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/helm-plugin/helm-release/release)
 [![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
 ![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
 [![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  **Please star ⭐ the repo if you find it useful.**
