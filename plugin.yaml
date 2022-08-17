@@ -21,10 +21,11 @@ command: "$HELM_PLUGIN_DIR/release.sh"
 hooks:
     install: |
         VERSION=$(curl --silent "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name)
-        case "$OSTYPE" in
+        OS="$(uname | tr '[:upper:]' '[:lower:]')"
+        case $OS in
           darwin*)  BINARY="yq_darwin_amd64" ;;
           linux*)   BINARY="yq_linux_amd64" ;;
-          *)        printf '%s\n' "Unsupported operating system detected while installing yq." >&2;exit 1 ;;
+          *)        printf '%s\n' "Unsupported operating system($OS) detected while installing yq." >&2;exit 1 ;;
         esac
         curl -L https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY}  -o $HELM_PLUGIN_DIR/lib/yq;
         chmod +x $HELM_PLUGIN_DIR/lib/yq;
