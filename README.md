@@ -41,7 +41,7 @@ Verify it's been installed:
 $ helm plugin list
 NAME   	VERSION	DESCRIPTION
 ...
-release	0.3.0  	Update values of a releases, pull charts from releases
+release	0.3.2  	Update values of a releases, pull charts from releases
 ...
 ```
 
