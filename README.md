@@ -78,7 +78,7 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 
 ### `helm release upgrade`
 
-Update the Helm release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. An optional parameter is `--destination` directory where the chart is saved,  defaults to `/tmp`. After release update chart will be deleted. Add `--reuse-values` to keep exsiting values and provide only changes.
+This command accepts the same parameters as `helm upgrade`  except specifying the helm chart. As an optional parameter you can pass `--destination` directory where the chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
 ```
 $ helm release upgrade
 Update release values without specifying the Helm Chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
@@ -111,7 +111,7 @@ Please see the [CONTRIBUTING](CONTRIBUTING.md) guide.
  Copyright 2022 JovianX Ltd.
 
  Licensed under the Apache License, Version 2.0 (the "[LICENSE](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE)")
- 
+
 <a href="https://jovianx.com">
     <img src=https://jovianx.com/wp-content/uploads/2021/05/Logo2-2.png  height="50">
 </a>
