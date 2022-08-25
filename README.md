@@ -50,12 +50,12 @@ release 0.3.2   Update values of a release, pull charts from releases
 
 ```
 $ helm release
-
 usage: helm release [ pull | upgrade ]
 ```
 Available Commands:
 * __pull__ - Pulls (re-create) a Helm chart from a deployed Helm release
 * __upgrade__ - Updates the release vlaues, as `helm upgrade`, but doesn't require the helm chart. The Chart is pulled from the release (`helm release pull`).
+
 
 ### `helm release pull`
 
