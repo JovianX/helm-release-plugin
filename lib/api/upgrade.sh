@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-help_text="helm release upgrade - Update release values without specifying the Helm Chart used for deployment.
+help_text="Update release values without specifying the Helm Chart. 
 Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]"
 
 function upgrade_release() {
