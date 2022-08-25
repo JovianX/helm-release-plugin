@@ -79,7 +79,7 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 This command accepts the same parameters as `helm upgrade`  except specifying the helm chart. As an optional parameter you can pass `--destination` directory where the chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
 ```
 $ helm release upgrade
-Helper for helm upgrade, that doesn't require to provide original helm chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
+Update release values without specifying the Helm Chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
 ```
 
 Example:
