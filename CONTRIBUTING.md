@@ -18,6 +18,15 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 1. Update the documentation according the change.
 1. Issue that pull request!
 
+
+## Developmnet environmnet
+To debug and test in developmnet, run command:
+```
+cd </PATH/TO/helm-release-plugin>
+HELM_PLUGINS=$(pwd)/.. helm release <COMMAND>
+```
+
+
 ## Any contributions you make will be under the Apache 2.0 Software License
 In short, when you submit code changes, your submissions are understood to be under the same [Apache License]([http://choosealicense.com/licenses/mit/](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE)) that covers the project. Feel free to contact the maintainers if that's a concern.
 
