@@ -47,22 +47,51 @@ release	0.3.2  	Update values of a releases, pull charts from releases
 
 
 ### Usage
+
 ```
 $ helm release
-usage: helm release [ pull ]
+usage: helm release [ pull upgrade ]
+```
 Available Commands:
-    pull   Pulls (re-create) a Helm chart from a deployed Helm release
+* __pull__ - Pulls (re-create) a Helm chart from a deployed Helm release
+* __upgrade__ - Behaves same as `helm upgrade`, but doesn't require providing of helm chart. Chart pulled by `helm release pull`.
 
+
+#### helm release pull
+
+```
 $ helm release pull
 usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECTORY>] [-o | --output [yaml | json | text]]
+```
 
 Example:
-$ helm --namespace nginx release pull nginx --destination /home/me/helm-charts 
+```
+$ helm --namespace nginx release pull nginx --destination /home/me/helm-charts
 Chart saved to nginx-ingress-0.13.2
 
 $ ls /home/me/helm-charts/nginx-ingress-0.13.2/
 Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values-plus.yaml  values.yaml
+```
 
+#### helm release upgrade
+
+This command accepts same parameters as `helm upgrade` except no need to provide chart. As optional parameter you can pass `--destination` directory where chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
+```
+$ helm release upgrade
+Helper for helm upgrade, that doesn't require to provide original helm chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
+```
+
+Example:
+```
+helm release upgrade rabbitmq --namespace=rabbitmq --set=key1=value1 --reuse-values
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Saving 1 charts
+Downloading common from repo https://charts.bitnami.com/bitnami
+Deleting outdated charts
+Release "rabbitmq" has been upgraded. Happy Helming!
+... standard helm upgrade output ...
 ```
 
 ## Contributing
