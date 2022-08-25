@@ -50,6 +50,7 @@ release 0.3.2   Update values of a release, pull charts from releases
 
 ```
 $ helm release
+
 usage: helm release [ pull | upgrade ]
 ```
 Available Commands:
@@ -71,6 +72,7 @@ Chart saved to nginx-ingress-0.13.2
 $ ls /home/me/helm-charts/nginx-ingress-0.13.2/
 Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values-plus.yaml  values.yaml
 ```
+
 
 ### `helm release upgrade`
 
