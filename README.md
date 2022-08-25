@@ -5,19 +5,19 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/helm-plugin/helm-release/release)
 [![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
 ![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
-[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  **Please star ⭐ the repo if you find it useful.**
+[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  >>  **Please star ⭐ the repo if you find it useful.**
 
 
-`helm-release` is a Helm 3 plugin that allows running operatins on Helm releases (deployed Helm charts).
+`helm-release` is a Helm 3 plugin that allows running operations on Helm releases (deployed Helm charts).
 
 Features:
 
  * Pull (re-create) Helm charts from a deployed helm release.
- * Update values of a deployed release (without the chart package or path).
+ * Update values of a deployed release, without providing the chart used for release deployment.
 
 Common use-Cases:
- * Redeploy a release on another cluster or namespace with the exact same helm chart. 
- * Update values of a release without the original helm chart, when you are not sure what exact version was used, or you have no access to the original helm chart (helm upgrade command requires the chart `helm upgrade [RELEASE] [CHART] [flags]`).
+ * Redeploy a release on another cluster or namespace with the same helm chart.
+ * Update values of a release, when you are not sure what exact chart version was used, or you don't have access to the original helm chart (Contrary to the `helm upgrade` command which requires the chart).
 
 ## Getting started
 ### Installation
@@ -32,37 +32,60 @@ helm plugin install https://github.com/JovianX/helm-release-plugin
 >>             Install: https://stedolan.github.io/jq/download/
 >
 
-Update to latest:
+Update to the latest version:
 ```shell
 $ helm plugin update release
 ```
 Verify it's been installed:
 ```shell
 $ helm plugin list
-NAME   	VERSION	DESCRIPTION
+NAME    VERSION DESCRIPTION
 ...
-release	0.3.2  	Update values of a releases, pull charts from releases
+release 0.3.2   Update values of a release, pull charts from releases
 ...
 ```
 
 
 ### Usage
+
 ```
 $ helm release
-usage: helm release [ pull ]
+usage: helm release [ pull | upgrade ]
+```
 Available Commands:
-    pull   Pulls (re-create) a Helm chart from a deployed Helm release
+* __pull__ - Pulls (re-create) a Helm chart from a deployed Helm release
+* __upgrade__ - Behaves the same as `helm upgrade`, but doesn't require the helm chart. The Chart is pulled from the release (`helm release pull`).
 
+### `helm release pull`
+
+```
 $ helm release pull
 usage: helm release pull <RELEASE NAME> [-d | --destination <TARGET CHART DIRECTORY>] [-o | --output [yaml | json | text]]
+```
 
 Example:
-$ helm --namespace nginx release pull nginx --destination /home/me/helm-charts 
+```
+$ helm --namespace nginx release pull nginx --destination /home/me/helm-charts
 Chart saved to nginx-ingress-0.13.2
 
 $ ls /home/me/helm-charts/nginx-ingress-0.13.2/
 Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values-plus.yaml  values.yaml
+```
 
+### `helm release upgrade`
+
+This command accepts the same parameters as `helm upgrade`  except specifying the helm chart. As an optional parameter you can pass `--destination` directory where the chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
+```
+$ helm release upgrade
+Helper for helm upgrade, that doesn't require to provide original helm chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
+```
+
+Example:
+```
+helm release upgrade rabbitmq --namespace=rabbitmq --set=key1=value1 --reuse-values
+...
+... standard helm upgrade output ...
+Update Complete. ⎈Happy Helming!⎈
 ```
 
 ## Contributing

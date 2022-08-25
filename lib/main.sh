@@ -2,6 +2,7 @@
 source $(dirname -- "$0")/lib/config.sh
 source $(dirname -- "$0")/lib/utility.sh
 source $(dirname -- "$0")/lib/api/helm-ops.sh
+source $(dirname -- "$0")/lib/api/upgrade.sh
 
 
 function main() {
@@ -11,6 +12,7 @@ function main() {
 
 	declare -A -x command_table=(
 		['pull']="pull_chart_from_release"
+		['upgrade']="upgrade_release"
 	)
 
 	local commands="${!command_table[@]}"
