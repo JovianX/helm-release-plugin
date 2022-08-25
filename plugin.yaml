@@ -1,5 +1,5 @@
 Name: release
-version: 0.3.2-dev
+version: 0.4.0
 usage: pull or update Helm Releases
 description: Update values of a releases, pull charts from releases
 command: $HELM_PLUGIN_DIR/release.sh
