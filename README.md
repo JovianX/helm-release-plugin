@@ -78,7 +78,7 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 
 ### `helm release upgrade`
 
-Update the Helm release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. An optional parameter is `--destination` directory where the chart is saved,  defaults to `/tmp`. After release update chart will be deleted.
+Update the Helm release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. An optional parameter is `--destination` directory where the chart is saved,  defaults to `/tmp`. After release update chart will be deleted. Add `--reuse-values` to keep exsiting values and provide only changes.
 ```
 $ helm release upgrade
 Update release values without specifying the Helm Chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
