@@ -55,9 +55,11 @@ usage: helm release [ pull | upgrade ]
 ```
 Available Commands:
 * __pull__ - Pulls (re-create) a Helm chart from a deployed Helm release
-* __upgrade__ - Behaves the same as `helm upgrade`, but doesn't require the helm chart. The Chart is pulled from the release (`helm release pull`).
+* __upgrade__ - Updates the release vlaues, as `helm upgrade`, but doesn't require the helm chart. The Chart is pulled from the release (`helm release pull`).
 
 ### `helm release pull`
+
+Pulls (re-create) a Helm chart from a deployed Helm release.
 
 ```
 $ helm release pull
@@ -76,7 +78,7 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 
 ### `helm release upgrade`
 
-This command accepts the same parameters as `helm upgrade`  except specifying the helm chart. As an optional parameter you can pass `--destination` directory where the chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
+Update the release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. As an optional parameter you can pass `--destination` directory where the chart will be dumped, by default chart dumped to `/tmp`. After release update chart will be deleted.
 ```
 $ helm release upgrade
 Update release values without specifying the Helm Chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
