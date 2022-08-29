@@ -7,7 +7,7 @@ function upgrade_release() {
 	RELEASE=$1
 	shift
 	if [[ -z $RELEASE ]]; then
-        printf '%s\n' 'No release was provided.'
+		printf '%s\n' 'No release was provided.'
 		exit_with_help "$help_text"
 	fi
 	chart_destination='/tmp'
