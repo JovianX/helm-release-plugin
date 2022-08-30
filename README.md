@@ -55,6 +55,7 @@ usage: helm release [ pull | upgrade ]
 Available Commands:
 * __pull__ - Pulls (re-create) a Helm chart from a deployed Helm release
 * __upgrade__ - Updates the release vlaues, as `helm upgrade`, but doesn't require the helm chart. The Chart is pulled from the release (`helm release pull`).
+* __ttl__ - Sets release time to live(TTL). Under the hood creates Kubernetes CronJob that deletes release and it self after scheduled time.
 
 
 ### `helm release pull`
@@ -91,6 +92,53 @@ helm release upgrade rabbitmq --namespace=rabbitmq --set=key1=value1 --reuse-val
 ... standard helm upgrade output ...
 Update Complete. ⎈Happy Helming!⎈
 ```
+
+
+### `helm release ttl`
+
+Set release time to live(TTL). Under the hood creates Kubernetes CronJob that deletes release and itself after
+scheduled time. With release TTL you can do following actions: set, unset and read TTL.
+
+To set release TTL provide release name(namespace and/or context name if needed) and parameter `--set` with time delta
+to calculate removal time. For example, to delete `redis` release in `five minutes`, run:
+```
+helm release ttl redis --set='5 minutes'
+cronjob.batch/redis-ttl created
+```
+Time delta passed to date CLI utility to calculate removal date. Please refer to date CLI
+[documentation](https://www.gnu.org/software/coreutils/manual/html_node/Relative-items-in-date-strings.html) for
+detailed description of possible time delta options.
+If CronJob exists and you run command again CronJob will be rescheduled:
+```
+helm release ttl redis --set='5 minutes'
+cronjob.batch/redis-ttl configured
+```
+
+To remove release TTL pass release name and `--unset` flag. For example, to remove `redis` release TTL run:
+```
+helm release ttl redis --unset
+cronjob.batch "redis-ttl" deleted
+```
+
+To see when release deletion scheduled pass just release name. This action supports three types of output:
+`text`(defaul), `yaml` and `json`. For example, to see when `redis` release scheduled for deletion, run:
+```
+helm release ttl redis
+Scheduled release removal date: Tue Aug 30 20:12:00 EEST 2022
+```
+Same request but output is `json`:
+```
+helm release ttl redis --output=json
+{"scheduled_date": "2022-08-30 17:12"}
+```
+Same request but output is `yaml`:
+```
+helm release ttl redis --output=yaml
+scheduled_date: 2022-08-30 17:12
+```
+| NB: Date returned as UTC. |
+| --- |
+
 
 ## Contributing
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:

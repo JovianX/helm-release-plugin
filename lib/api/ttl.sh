@@ -4,7 +4,7 @@ help_text="
 Sets release TTL. Under the hood creates Kubernetes CronJob that will delete specific release in concrete time.
 Usage:
 	helm release ttl <RELEASE NAME> --set <TIME DELTA> - sets release TTL. Time delta processed by 'date' CLI utility.
-		So you can use any time delta definition that supports 'data' utility. For instance:
+		So you can use any time delta definition that supports 'data' utility. Examples:
 		helm release ttl redis --set='tomorrow'
 		helm release ttl redis --set='2 days'
 		helm release ttl redis --set='next monday'
@@ -15,8 +15,18 @@ Usage:
 		helm release ttl redis --namespace=release-namespace --kube-context=not-default-context --set='1 hour'
 
 
-	helm release ttl <RELEASE NAME> - returns Kubernetes CronJob description. For instance:
+	helm release ttl <RELEASE NAME> [ -o --output [ text | yaml | json ] ] - returns Kubernetes CronJob description.
+		Examples:
 		helm release ttl redis --namespace=release-namespace
+		helm release ttl redis --namespace=release-namespace
+
+		You can spesify output format text(default) yaml or json. For example:
+		helm release ttl redis --namespace=release-namespace --output=yaml
+		helm release ttl redis --namespace=release-namespace -o json
+		Output examples:
+		text: Scheduled release removal date: Tue Aug 30 14:44:00 EEST 2022
+		yaml: scheduled_date: 2022-08-30 14:44
+		json: {\"scheduled_date\": \"2022-08-30 14:44\"}
 
 
 	helm release ttl <RELEASE NAME> --unset - deletes release TTL. For instance:
