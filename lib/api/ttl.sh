@@ -65,7 +65,26 @@ function create_ttl() {
 function read_ttl() {
 	RELEASE=$1
 	cronjob_name="$RELEASE-ttl"
-	kubectl describe cronjob $cronjob_name --namespace=$HELM_NAMESPACE --context=$HELM_KUBECONTEXT || exit 0
+	cronjob_json=$(kubectl get cronjob $cronjob_name --output=json --namespace=$HELM_NAMESPACE --context=$HELM_KUBECONTEXT)
+	if [[ -z $cronjob_json ]]; then
+		exit 1
+	fi
+	schedule=$(echo $cronjob_json | jq -r .spec.schedule)
+	minutes=${schedule:0:2}
+	hours=${schedule:3:2}
+	day=${schedule:6:2}
+	month=${schedule:9:2}
+	year=$(date +'%Y')
+
+	case $OUTPUT in
+		(json)
+			printf "{\"scheduled_date\": \"%s\"}\n" "$year-$month-$day $hours:$minutes" ;;
+		(yaml)
+			printf "scheduled_date: %s\n" "$year-$month-$day $hours:$minutes" ;;
+		(*)
+			release_removal_date=$(date --date="$year-$month-$day $hours:$minutes")
+			printf "Scheduled release removal date: %s\n" "$release_removal_date" ;;
+	esac
 }
 
 function delete_ttl() {
@@ -78,6 +97,7 @@ function release_ttl() {
 	RELEASE=""
 	SET_DATE=""
 	ACTION="read"  # Work mode. Possible options are: 'read' | 'set' | 'unset'.
+	OUTPUT="text"
 
 	RELEASE=$1
 	shift
@@ -118,6 +138,25 @@ function release_ttl() {
 				ACTION='unset'
 				shift
 				;;
+			(-o|--output)
+				shift
+				if test $# -gt 0; then
+					export OUTPUT=$1
+					if [ "$OUTPUT" != "text" ] && [ "$OUTPUT" != "yaml" ] && [ "$OUTPUT" != "json" ]; then
+						exit_with_help "$help_text"
+					fi
+				else
+					exit_with_help "$help_text"
+				fi
+				shift
+				;;
+			(--output*)
+				export OUTPUT=`echo $1 | sed -e 's/^[^=]*=//g'`
+				if [ "$OUTPUT" != "text" ] && [ "$OUTPUT" != "yaml" ] && [ "$OUTPUT" != "json" ]; then
+					exit_with_help "$help_text"
+				fi
+				shift
+				;;
 			(--help)
 				exit_with_help "$help_text"
 				;;
@@ -129,18 +168,18 @@ function release_ttl() {
 	done
 
 	case "$ACTION" in
-			(set)
-				create_ttl $RELEASE "$SET_DATE"
-				;;
-			(read)
-				read_ttl $RELEASE
-				;;
-			(unset)
-				delete_ttl $RELEASE
-				;;
-			*)
-				printf '%s\n' "Unknown TTL action $ACTION."
-				exit 1
-				;;
-		esac
+		(set)
+			create_ttl $RELEASE "$SET_DATE"
+			;;
+		(read)
+			read_ttl $RELEASE
+			;;
+		(unset)
+			delete_ttl $RELEASE
+			;;
+		*)
+			printf '%s\n' "Unknown TTL action $ACTION."
+			exit 1
+			;;
+	esac
 }
