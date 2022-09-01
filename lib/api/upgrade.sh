@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-
-help_text="Update release values without specifying the Helm Chart. 
+help_text="helm release upgrade - Update release values without specifying the Helm Chart used for deployment.
 Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]"
 
 function upgrade_release() {
 	RELEASE=$1
 	shift
 	if [[ -z $RELEASE ]]; then
-        printf '%s\n' 'No release was provided.'
+		printf '%s\n' 'No release was provided.'
 		exit_with_help "$help_text"
 	fi
 	chart_destination='/tmp'
