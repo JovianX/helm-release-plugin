@@ -16,8 +16,3 @@ function test_deps() {
 	fi
 }
 
-function str_split() {
-
-	declare -a -x -g str_split_result=()
-	IFS="$2"; read -ra str_split_result <<< $1; IFS=' '
-}
