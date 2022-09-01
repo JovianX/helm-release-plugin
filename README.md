@@ -99,6 +99,33 @@ Update Complete. ⎈Happy Helming!⎈
 ### `helm release ttl`
 Sets release time-to-live(TTL) to schedule atuomatic release uninstall. `release ttl` uses Kubernetes CronJob to schedule automatic uninstallation of releases. Helm release TTL supports actions: **set**, **unset** and **get** TTL for a helm release.
 
+#### GET TTL
+To get the current TTL of a release pass the `<RELEASE NAME>`. 
+```
+helm release ttl <RELEASE NAME>
+```
+
+Supproted outputs: `text`(defaul), `yaml` and `json`. 
+For example, to see when `redis` release scheduled for deletion, run:
+```
+helm release ttl redis
+Scheduled release removal date: Tue Aug 30 20:12:00 EEST 2022
+```
+Same request with `json` output:
+```
+helm release ttl redis --output=json
+{"scheduled_date": "2022-08-30 17:12"}
+```
+Same request with `yaml` output:
+```
+helm release ttl redis --output=yaml
+scheduled_date: 2022-08-30 17:12
+```
+
+| Note: Dates returned in cluster timezone (default UTC). |
+| --- |
+
+
 #### SET TTL
 
 Sets the TTL of a release, afterwhich the release is deleted. Provide `<RELEASE-NAME>` and  `--set` to set the release TTL time using `date` fromat.
@@ -133,31 +160,6 @@ helm release ttl redis --unset
 cronjob.batch "redis-ttl" deleted
 ```
 
-#### GET TTL
-To get the current TTL of a release pass the `<RELEASE NAME>`. 
-```
-helm release ttl <RELEASE NAME>
-```
-
-Supproted outputs: `text`(defaul), `yaml` and `json`. 
-For example, to see when `redis` release scheduled for deletion, run:
-```
-helm release ttl redis
-Scheduled release removal date: Tue Aug 30 20:12:00 EEST 2022
-```
-Same request with `json` output:
-```
-helm release ttl redis --output=json
-{"scheduled_date": "2022-08-30 17:12"}
-```
-Same request with `yaml` output:
-```
-helm release ttl redis --output=yaml
-scheduled_date: 2022-08-30 17:12
-```
-
-> Note: Date returned as cluster timedate (default UTC). |
-> --- |
 
 
 ## Contributing
