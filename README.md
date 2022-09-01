@@ -1,23 +1,32 @@
 
-![Panda](/panda.jpg)
+<div align="center">
+ <img src="/panda.jpg">
 
-# Helm3 Plugin `helm-release`
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/helm-plugin/helm-release/release)
+
 [![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/helm-plugin/helm-release/release)
 ![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
-[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  >>  **Please star ⭐ the repo if you find it useful.**
+[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  
 
+| **Please star ⭐ the repo if you find it useful.** |
+| --- |
+
+ </div>
+ 
+# Helm3 Plugin `helm-release`
 
 `helm-release` is a Helm 3 plugin that allows running operations on Helm releases (deployed Helm charts).
 
-Features:
+### ✨ Features:
 
- * Pull (re-create) Helm charts from a deployed helm release.
- * Update values of a deployed release, without providing the chart used for release deployment.
+ * 📥 `pull` to pull (re-create) Helm charts from a deployed helm release.
+ * 📄 `upgrade` to Update values of a deployed release, without providing the chart used for release deployment.
+ * ⏳`ttl` to schedule an uninstallation/removal/deletion of a release.
 
-Common use-Cases:
+### 🫶 Common use-Cases:
  * Redeploy a release on another cluster or namespace with the same helm chart.
  * Update values of a release, when you are not sure what exact chart version was used, or you don't have access to the original helm chart (Contrary to the `helm upgrade` command which requires the chart).
+ * configure temporary or ephemeral helm releases so they are automatically deleted after some time and not forgotten on the cluster forever. 
 
 ## Getting started
 ### Installation
@@ -54,7 +63,7 @@ usage: helm release [ pull | upgrade ]
 ```
 Available Commands:
 * __pull__ - Pulls (re-create) the Helm chart from a deployed Helm release.
-* __upgrade__ - Updates Helm release vlaues without the Helm chart.
+* __upgrade__ - Updates Helm release values without the Helm chart.
 * __ttl__ - Sets release time to live(TTL) to schedule release automatic delete.
 
 
@@ -81,7 +90,7 @@ Chart.yaml  crds  README.md  templates  values-icp.yaml  values-nsm.yaml  values
 >
 ### `helm release upgrade`
 
-Update the Helm release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. `--destination` is an optional parameter to set the directory where the chart is saved, defaults to `/tmp`. After the release is updated the chart is deleted. We recommend setting the `--reuse-values` flag to keep exsiting values and provide only the values you would like to change.
+Update the Helm release values, without specifying the helm chart. The `helm release upgrade` command accepts the same parameters as `helm upgrade` without specifying the helm chart. `--destination` is an optional parameter to set the directory where the chart is saved, defaults to `/tmp`. After the release is updated the chart is deleted. We recommend setting the `--reuse-values` flag to keep existing values and provide only the values you would like to change.
 ```
 $ helm release upgrade
 Update release values without specifying the Helm Chart. Usage: helm release upgrade [RELEASE NAME] [-d | --destination <TARGET CHART DIRECTORY>] [helm upgrade arguments]
@@ -97,7 +106,7 @@ Update Complete. ⎈Happy Helming!⎈
 
 
 ### `helm release ttl`
-Sets release time-to-live(TTL) to schedule atuomatic release uninstall. `release ttl` uses Kubernetes CronJob to schedule automatic uninstallation of releases. Helm release TTL supports actions: **set**, **unset** and **get** TTL for a helm release.
+Sets release time-to-live(TTL) to schedule automatic release uninstallation. `release ttl` uses Kubernetes CronJob to schedule automatic uninstallation of releases. Helm release TTL supports actions: **set**, **unset** and **get** TTL for a helm release.
 
 #### GET TTL
 To get the current TTL of a release pass the `<RELEASE NAME>`. 
@@ -106,7 +115,7 @@ helm release ttl <RELEASE NAME>
 ```
 
 Supproted outputs: `text`(defaul), `yaml` and `json`. 
-For example, to see when `redis` release scheduled for deletion, run:
+For example, to see when `redis` release is scheduled for deletion, run:
 ```
 helm release ttl redis
 Scheduled release removal date: Tue Aug 30 20:12:00 EEST 2022
@@ -128,12 +137,12 @@ scheduled_date: 2022-08-30 17:12
 
 #### SET TTL
 
-Sets the TTL of a release, afterwhich the release is deleted. Provide `<RELEASE-NAME>` and  `--set` to set the release TTL time using `date` fromat.
+Sets the TTL of a release, after which the release is deleted. Provide `<RELEASE-NAME>` and  `--set` to set the release TTL time using `date` format.
 ```
 helm release ttl <RELEASE NAME> --set <DATE>
 ```
 
- For example to schedule deletion of a release in `five minutes`, run:
+ For example to schedule deletion of a release in `five minutes, run:
 ```
 helm release ttl redis --set='5 minutes'
 cronjob.batch/redis-ttl created
@@ -141,7 +150,7 @@ cronjob.batch/redis-ttl created
 > Refer to complete `<DATA>` [documentation](https://www.gnu.org/software/ coreutils/manual/html_node/Relative-items-in-date-strings.html) for
 > detailed description of possible time delta options.
 
-If TTL is configued (CronJob exists) and the `--set` command is executed again the TTL(CronJob) will be rescheduled:
+If TTL is configured (CronJob exists) and the `--set` command is executed again the TTL(CronJob) will be rescheduled:
 ```
 helm release ttl redis --set='5 minutes'
 cronjob.batch/redis-ttl configured
