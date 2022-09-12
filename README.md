@@ -21,7 +21,7 @@
 
  * 📥 [PULL](#helm-release-pull) to pull (re-create) Helm charts from a deployed helm release.
  * 📄 [UPGRADE](#helm-release-upgrade) to Update values of a deployed release, without providing the chart used for release deployment.
- * ⏳ [TTL](#helm-release-ttl) to schedule an uninstallation/removal/deletion of a release.
+ * ⏳ [TTL](#helm-release-ttl) to schedule an uninstallation/removal/deletion of a release. [Launch Article](https://dev.to/rtpro/helm-release-time-to-livettl-for-temporary-environments-1239)
 
 ### 🫶 Common use-Cases:
  * Redeploy a release on another cluster or namespace with the same helm chart.
