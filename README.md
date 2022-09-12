@@ -66,6 +66,14 @@ Available Commands:
 * __upgrade__ - Updates Helm release values without the Helm chart.
 * __ttl__ - Sets release time to live(TTL) to schedule release automatic delete.
 
+>
+> Note: Setting Namespace and Context are supported via helm native flags
+> ```
+> -n, --namespace string            namespace scope for this request`
+>     --kube-context string         name of the kubeconfig context to use
+>  ```
+>
+
 
 
 ### `helm release pull`
