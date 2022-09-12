@@ -19,9 +19,9 @@
 
 ### ✨ Features:
 
- * 📥 `pull` to pull (re-create) Helm charts from a deployed helm release.
- * 📄 `upgrade` to Update values of a deployed release, without providing the chart used for release deployment.
- * ⏳`ttl` to schedule an uninstallation/removal/deletion of a release.
+ * 📥 [PULL](#helm-release-pull) to pull (re-create) Helm charts from a deployed helm release.
+ * 📄 [UPGRADE](#helm-release-upgrade) to Update values of a deployed release, without providing the chart used for release deployment.
+ * ⏳ [TTL](#helm-release-ttl) to schedule an uninstallation/removal/deletion of a release.
 
 ### 🫶 Common use-Cases:
  * Redeploy a release on another cluster or namespace with the same helm chart.
