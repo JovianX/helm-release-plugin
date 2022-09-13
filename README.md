@@ -6,7 +6,8 @@
 [![GitHub license](https://img.shields.io/github/license/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helm-release)](https://artifacthub.io/packages/helm-plugin/helm-release/release)
 ![GitHub contributors](https://img.shields.io/github/contributors/JovianX/helm-release-plugin)
-[![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  
+![Discord](https://img.shields.io/discord/1014893148599754894?style=flat)
+ [![GitHub stars](https://img.shields.io/github/stars/JovianX/helm-release-plugin)](https://github.com/JovianX/helm-release-plugin/stargazers)  
 
 
 | **Please star ⭐ the repo if you find it useful.** |
