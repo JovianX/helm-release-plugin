@@ -42,7 +42,7 @@ function create_ttl() {
 	schedule=$(date --utc --date="$TIME_DELTA" "+%M %H %d %m *")
 
 	if (( scheduled_time < now )); then
-		printf '%s\n' 'Release end of life seted in past.'
+		printf '%s\n' 'Release TTL was set in past. TTL must be a future time.'
 		exit_with_help "$help_text"
 	fi
 
