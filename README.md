@@ -190,6 +190,12 @@ We love your input! We want to make contributing to this project as easy and tra
 
 Please see the [CONTRIBUTING](CONTRIBUTING.md) guide.
 
+## Users
+Who is using helm-release-plugin:
+
+
+- [JovianX ServiceHub](https://github.com/JovianX/Service-Hub)
+
 
 ## Contributors
 <a href = "https://github.com/JovianX/helm-release-plugin/graphs/contributors">
