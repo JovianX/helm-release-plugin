@@ -179,6 +179,34 @@ helm release ttl redis --unset
 cronjob.batch "redis-ttl" deleted
 ```
 
+##### Service Account
+You can specify which service account should be used once the TTL has expired. The `default` service account is used, unless otherwise specified which is highly recommended. You can specify the service account with the `--service-account` parameter. Note this is only used in the job context when the TTL has expired and the cleanup is triggered.
+
+```
+helm release ttl redis --service-account='my-privileged-serviceaccount' --set='5 minutes'
+```
+
+Example service account (needs to be provisioned/created separately)
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-privileged-serviceaccount
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: my-privileged-serviceaccount
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: my-privileged-serviceaccount
+    namespace: default
+```
 
 
 ## Contributing
