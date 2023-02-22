@@ -118,6 +118,10 @@ Update Complete. ⎈Happy Helming!⎈
 ### `helm release ttl`
 Sets release time-to-live(TTL) to schedule automatic release uninstallation. `release ttl` uses Kubernetes CronJob to schedule automatic uninstallation of releases. Helm release TTL supports actions: **set**, **unset** and **get** TTL for a helm release.
 
+
+| Note: Helm release TTL feature uses `date` binary provided by `coreutils` package. |
+| --- |
+
 #### GET TTL
 To get the current TTL of a release pass the `<RELEASE NAME>`. 
 ```
