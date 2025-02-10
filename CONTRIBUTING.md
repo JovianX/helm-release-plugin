@@ -26,7 +26,8 @@ cd </PATH/TO/helm-release-plugin>
 HELM_PLUGINS=$(pwd)/.. helm release <COMMAND>
 ```
 
-Alternatively install a branch version of the plugin
+Alternatively install a branch version of the plugin.
+You may need to uninstall first in order to be able to reinstall the plugin `helm plugin uninstall release`
 ```
 helm plugin install https://github.com/JovianX/helm-release-plugin --version <BRANCH>
 ```
