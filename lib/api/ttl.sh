@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-HELM_VERSION="3.10.2"
-KUBECTL_VERSION="1.26.1"
+HELM_VERSION="3.17.0"
+KUBECTL_VERSION="1.32.1"
 
 help_text="
 Sets release TTL. Under the hood creates Kubernetes CronJob that will delete specific release in concrete time.
