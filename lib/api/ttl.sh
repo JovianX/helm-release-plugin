@@ -87,7 +87,7 @@ function assert_serviceaccount_exits() {
 	namespace=$1
 	service_account=$2
 
-	service_accounts=`kubectl get serviceaccounts --output=yaml --namespace=$1 | yq  '.items[].metadata.name'`  # Fetching list of service accounts.
+	service_accounts=`kubectl get serviceaccounts --output=json --namespace=$1 | jq -r '.items[].metadata.name'`  # Fetching list of service accounts.
 	array=(${service_accounts})  # Converting it to array.
 
 	if [[ ${array[*]} =~ ${service_account} ]]; then  # 'contains' if condition example.
