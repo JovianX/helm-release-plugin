@@ -96,6 +96,7 @@ function assert_serviceaccount_exits() {
 
 	if [[ ! ${array[*]} =~ ${service_account} ]]; then  # 'not contains' if condition example
 		printf "Service account list does not contains '$service_account'.\n"
+		printf "Available service accounts: ${array[*]}\n"
 		exit_with_help "$help_text"
 	fi
 }
