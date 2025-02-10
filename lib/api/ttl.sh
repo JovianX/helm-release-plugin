@@ -54,6 +54,8 @@ function create_ttl() {
 		exit_with_help "$help_text"
 	fi
 
+	assert_serviceaccount_exits $HELM_NAMESPACE $SERVICE_ACCOUNT
+
 	manifest="
         apiVersion: batch/v1
         kind: CronJob
@@ -79,6 +81,23 @@ function create_ttl() {
                   restartPolicy: OnFailure
                   serviceAccountName: $SERVICE_ACCOUNT"
 	echo "$manifest" | kubectl apply --filename=- --namespace=$HELM_NAMESPACE --context=$HELM_KUBECONTEXT
+}
+
+function assert_serviceaccount_exits() {
+	namespace=$1
+	service_account=$2
+
+	service_accounts=`kubectl get serviceaccounts --output=yaml --namespace=$1 | yq  '.items[].metadata.name'`  # Fetching list of service accounts.
+	array=(${service_accounts})  # Converting it to array.
+
+	if [[ ${array[*]} =~ ${service_account} ]]; then  # 'contains' if condition example.
+		printf "Service account list contains '$service_account'.\n"
+	fi
+
+	if [[ ! ${array[*]} =~ ${service_account} ]]; then  # 'not contains' if condition example
+		printf "Service account list does not contains '$service_account'.\n"
+		exit_with_help "$help_text"
+	fi
 }
 
 function read_ttl() {
