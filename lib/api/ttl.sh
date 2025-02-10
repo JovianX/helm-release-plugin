@@ -27,7 +27,7 @@ Usage:
 		helm release ttl redis --namespace=release-namespace
 		helm release ttl redis --namespace=release-namespace
 
-		You can spesify output format text(default) yaml or json. For example:
+		You can specify output format text(default) yaml or json. For example:
 		helm release ttl redis --namespace=release-namespace --output=yaml
 		helm release ttl redis --namespace=release-namespace -o json
 		Output examples:
