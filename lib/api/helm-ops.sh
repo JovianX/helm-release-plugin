@@ -90,16 +90,19 @@ function pull_chart_from_release() {
 			echo $data | base64 -d > $CHART_DIR/$filename
 		done
 		# Create Chart files
-		for row in $(echo $RELEASE_CONTENT | jq -r '.chart.files[] | @base64'); do
-			#echo $row
-			_jq() {
-				echo ${row} | base64 --decode | jq -r ${1}
-			}
-			filename=$(echo $(_jq '.name'))
-			data=$(echo $(_jq '.data') )
-			mkdir -p $(dirname $CHART_DIR/$filename)
-			echo $data | base64 -d > $CHART_DIR/$filename
-		done
+  		FILES="$(echo $RELEASE_CONTENT | jq -r '.chart.files[] | @base64' 2> /dev/null)"
+    		if [[ $? -eq 0 ]]; then
+			for row in $FILES; do
+				#echo $row
+				_jq() {
+					echo ${row} | base64 --decode | jq -r ${1}
+				}
+				filename=$(echo $(_jq '.name'))
+				data=$(echo $(_jq '.data') )
+				mkdir -p $(dirname $CHART_DIR/$filename)
+				echo $data | base64 -d > $CHART_DIR/$filename
+			done
+  		fi
 	fi
 	rm_dir './data'
 	case $OUTPUT in
