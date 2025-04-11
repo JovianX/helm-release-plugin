@@ -3,9 +3,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but it's not installed. Aborting."; exit 1; }
-command -v jq >/dev/null 2>&1 || { echo >&2 "jq is required but it's not installed. Aborting."; exit 1; }
-command -v uname >/dev/null 2>&1 || { echo >&2 "uname is required but it's not installed. Aborting."; exit 1; }
+for cmd in curl jq uname tr chmod printf; do
+  if ! command -v $cmd &> /dev/null; then
+    echo "$cmd could not be found. Please install it."
+    exit 1
+  fi
+done
 
 VERSION=$(curl --silent "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name)
 
