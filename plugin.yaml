@@ -2,19 +2,6 @@ Name: release
 version: 0.4.0
 usage: pull or update Helm Releases
 description: Update values of a releases, pull charts from releases
-command: $HELM_PLUGIN_DIR/release.sh
+command: ${HELM_PLUGIN_DIR}/release.sh
 hooks:
-  install: >
-    VERSION=$(curl --silent "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name)
-
-    OS="$(uname | tr '[:upper:]' '[:lower:]')"
-
-    case $OS in
-      darwin*)  BINARY="yq_darwin_amd64" ;;
-      linux*)   BINARY="yq_linux_amd64" ;;
-      *)        printf '%s\n' "Unsupported operating system($OS) detected while installing yq." >&2;exit 1 ;;
-    esac
-
-    curl -L https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -o $HELM_PLUGIN_DIR/lib/yq;
-
-    chmod +x $HELM_PLUGIN_DIR/lib/yq;
+  install: ${HELM_PLUGIN_DIR}/install.sh
