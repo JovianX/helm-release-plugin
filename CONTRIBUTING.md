@@ -1,4 +1,4 @@
-# Contributing 
+# Contributing
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -26,6 +26,11 @@ cd </PATH/TO/helm-release-plugin>
 HELM_PLUGINS=$(pwd)/.. helm release <COMMAND>
 ```
 
+Alternatively install a branch version of the plugin.
+You may need to uninstall first in order to be able to reinstall the plugin `helm plugin uninstall release`
+```
+helm plugin install https://github.com/JovianX/helm-release-plugin --version <BRANCH>
+```
 
 ## Any contributions you make will be under the Apache 2.0 Software License
 In short, when you submit code changes, your submissions are understood to be under the same [Apache License]([http://choosealicense.com/licenses/mit/](https://github.com/JovianX/helm-release-plugin/blob/main/LICENSE)) that covers the project. Feel free to contact the maintainers if that's a concern.

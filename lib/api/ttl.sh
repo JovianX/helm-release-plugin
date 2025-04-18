@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+HELM_VERSION="3.17.0"
+KUBECTL_VERSION="1.32.1"
+
 help_text="
 Sets release TTL. Under the hood creates Kubernetes CronJob that will delete specific release in concrete time.
 Usage:
@@ -14,13 +17,17 @@ Usage:
 		You can pass namespace or/and context. For instance:
 		helm release ttl redis --namespace=release-namespace --kube-context=not-default-context --set='1 hour'
 
+		It is recommended to create a special service account (instead of granting the default service account special privileges)
+		helm release ttl redis --namespace=release-namespace --service-account='my-service-account' --set='1 hour'
+
+		This service account will be used in the job when the ttl time expires and the cleanup is triggered.
 
 	helm release ttl <RELEASE NAME> [ -o --output [ text | yaml | json ] ] - returns Kubernetes CronJob description.
 		Examples:
 		helm release ttl redis --namespace=release-namespace
 		helm release ttl redis --namespace=release-namespace
 
-		You can spesify output format text(default) yaml or json. For example:
+		You can specify output format text(default) yaml or json. For example:
 		helm release ttl redis --namespace=release-namespace --output=yaml
 		helm release ttl redis --namespace=release-namespace -o json
 		Output examples:
@@ -36,6 +43,7 @@ Usage:
 function create_ttl() {
 	RELEASE=$1
 	TIME_DELTA=$2
+	SERVICE_ACCOUNT=$3
 	cronjob_name="$RELEASE-ttl"
 	now=$(date --utc "+%s")
 	scheduled_time=$(date --utc --date="$TIME_DELTA" "+%s")
@@ -45,6 +53,8 @@ function create_ttl() {
 		printf '%s\n' 'Release TTL was set in past. TTL must be a future time.'
 		exit_with_help "$help_text"
 	fi
+
+	assert_serviceaccount_exits $HELM_NAMESPACE $SERVICE_ACCOUNT
 
 	manifest="
         apiVersion: batch/v1
@@ -60,16 +70,35 @@ function create_ttl() {
                 spec:
                   initContainers:
                     - name: release-ttl-terminator
-                      image: alpine/helm
+                      image: alpine/helm:$HELM_VERSION
                       imagePullPolicy: IfNotPresent
                       args: [ 'uninstall', '$RELEASE' ]
                   containers:
                     - name: release-ttl-cleaner
-                      image: bitnami/kubectl
+                      image: bitnami/kubectl:$KUBECTL_VERSION
                       imagePullPolicy: IfNotPresent
                       args: [ 'delete', 'cronjob', '$cronjob_name' ]
-                  restartPolicy: OnFailure"
+                  restartPolicy: OnFailure
+                  serviceAccountName: $SERVICE_ACCOUNT"
 	echo "$manifest" | kubectl apply --filename=- --namespace=$HELM_NAMESPACE --context=$HELM_KUBECONTEXT
+}
+
+function assert_serviceaccount_exits() {
+	namespace=$1
+	service_account=$2
+
+	service_accounts=`kubectl get serviceaccounts --output=json --namespace=$1 | jq -r '.items[].metadata.name'`  # Fetching list of service accounts.
+	array=(${service_accounts})  # Converting it to array.
+
+	if [[ ${array[*]} =~ ${service_account} ]]; then  # 'contains' if condition example.
+		printf "Service account list contains '$service_account'.\n"
+	fi
+
+	if [[ ! ${array[*]} =~ ${service_account} ]]; then  # 'not contains' if condition example
+		printf "Service account list does not contains '$service_account'.\n"
+		printf "Available service accounts: ${array[*]}\n"
+		exit_with_help "$help_text"
+	fi
 }
 
 function read_ttl() {
@@ -108,6 +137,7 @@ function release_ttl() {
 	SET_DATE=""
 	ACTION="read"  # Work mode. Possible options are: 'read' | 'set' | 'unset'.
 	OUTPUT="text"
+	SERVICE_ACCOUNT="default"
 
 	RELEASE=$1
 	shift
@@ -167,6 +197,10 @@ function release_ttl() {
 				fi
 				shift
 				;;
+			(--service-account*)
+				SERVICE_ACCOUNT=`echo $1 | sed -e 's/^[^=]*=//g'`
+				shift
+				;;
 			(--help)
 				exit_with_help "$help_text"
 				;;
@@ -179,7 +213,7 @@ function release_ttl() {
 
 	case "$ACTION" in
 		(set)
-			create_ttl $RELEASE "$SET_DATE"
+			create_ttl $RELEASE "$SET_DATE" "$SERVICE_ACCOUNT"
 			;;
 		(read)
 			read_ttl $RELEASE
