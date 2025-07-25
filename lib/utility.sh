@@ -14,6 +14,18 @@ function test_deps() {
 		echo "jq could not be found - please install command `jq` (https://stedolan.github.io/jq/download/)"
 		exit
 	fi
+
+
+	if ! date --utc +%s > /dev/null 2>&1; then
+		if ! command -v gdate &> /dev/null; then
+			echo "gdate could not be found - please install command `gdate` (https://www.gnu.org/software/coreutils/)"
+			echo "If you are on macOS, you can install it using Homebrew: `brew install coreutils`"
+			exit
+		else
+			alias date='gdate'
+		fi
+	fi
+
 }
 
 function str_split() {
