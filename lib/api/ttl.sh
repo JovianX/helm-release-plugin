@@ -75,7 +75,7 @@ function create_ttl() {
                       args: [ 'uninstall', '$RELEASE' ]
                   containers:
                     - name: release-ttl-cleaner
-                      image: bitnami/kubectl:$KUBECTL_VERSION
+                      image: alpine/kubectl:$KUBECTL_VERSION
                       imagePullPolicy: IfNotPresent
                       args: [ 'delete', 'cronjob', '$cronjob_name' ]
                   restartPolicy: OnFailure
